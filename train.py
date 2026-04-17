@@ -41,7 +41,7 @@ def main():
     print(f"Training on {device} with {len(dataset)} images")
     print(f"DataLoader workers: {num_workers}")
 
-    for epoch in range(10):
+    for epoch in range(3):
         model.train()
         running_loss = 0.0
 
