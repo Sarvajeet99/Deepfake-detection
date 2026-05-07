@@ -10,8 +10,19 @@ from model import CLASS_NAMES, get_eval_transform, get_model
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
+import os
+import gdown
+
+WEIGHTS_PATH = "model.pth"
+FILE_ID = "1b6wE-lTPlgjvpc-LZ2kycG92KqoVnbPm"  # <-- paste your Drive file ID
+
+if not os.path.exists(WEIGHTS_PATH):
+    print("Downloading pretrained weights from Google Drive...")
+    gdown.download(f"https://drive.google.com/uc?id={FILE_ID}&confirm=t", WEIGHTS_PATH, quiet=False)
+    print("Download complete.")
+
 model = get_model(pretrained=False)
-checkpoint = torch.load("model.pth", map_location=device)
+checkpoint = torch.load(WEIGHTS_PATH, map_location=device)
 if isinstance(checkpoint, dict) and "state_dict" in checkpoint:
     state_dict = checkpoint["state_dict"]
     class_names = checkpoint.get("class_names", CLASS_NAMES)
