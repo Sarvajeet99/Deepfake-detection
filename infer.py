@@ -1,5 +1,7 @@
 # infer.py
 import argparse
+import os
+import gdown
 from pathlib import Path
 import tkinter as tk
 from tkinter import filedialog
@@ -9,9 +11,6 @@ from PIL import Image
 from model import CLASS_NAMES, get_eval_transform, get_model
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
-
-import os
-import gdown
 
 WEIGHTS_PATH = "model.pth"
 FILE_ID = "1b6wE-lTPlgjvpc-LZ2kycG92KqoVnbPm"  # <-- paste your Drive file ID
